@@ -1,3 +1,7 @@
+#![crate_name = "ms"]
+#![license = "MIT"]
+#![feature(globs)]
+
 extern crate regex;
 
 use regex::Regex;
@@ -7,10 +11,6 @@ static m : int = s * 60;
 static h : int = m * 60;
 static d : int = h * 24;
 static y : int = d * 365;
-
-fn main() {
-
-}
 
 pub fn to_ms(value : &str) -> int {
   println!("{}",value);
@@ -39,7 +39,21 @@ pub fn to_ms(value : &str) -> int {
     "minutes" | "m" => first_piece * m,
     "seconds" | "s" => first_piece * s,
     "ms" => first_piece,
-    _ => 0
+    _ => -1
   }
   
+}
+
+#[test]
+fn test_valid_input() {
+  assert_eq!(to_ms("5s"), 5000);
+  assert_eq!(to_ms("6m"), 360000);
+  assert_eq!(to_ms("7h"), 25200000);
+  assert_eq!(to_ms("8d"), 691200000);
+  assert_eq!(to_ms("9y"), 283824000000);
+}
+
+#[test]
+fn test_invalid_input() {
+  assert_eq!(to_ms("gibberish"), -1);
 }
