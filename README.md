@@ -1,4 +1,4 @@
-# ms
+# ms [![Build Status](https://travis-ci.org/mavdi/ms.svg?branch=master)](https://travis-ci.org/mavdi/ms)
 
 A crate similar to the npm [ms] module 
 
